@@ -1,24 +1,18 @@
-//import * as React from 'react'
-import React, {useState} from 'react'
+import React from 'react';
+import Box from './box';
 
 type Props = {
-  name: string
-  onChange: (value: string) => void
+  fruit: string[]
+  onDeleteFruit?: (name: string) => void
 }
 
-export default function Hello(props: Props) {
-
-  const [name, setName] = useState(props.name)
-
-  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const value = event.currentTarget?.value;
-    setName(value);
-    props.onChange(value);
-  }
-
+export default function Hello({fruit, onDeleteFruit}: Props) {
   return <div>
-    <div>Hello, {name}</div>
-    <input type='text' value={name} onChange={onChange}/>
+    <h1>Hello, I like:</h1>
+    {
+      fruit.map((name, index) =>
+        <Box name={name} onDeleteFruit={onDeleteFruit} key={index}/>
+      )
+    }
   </div>
-};
-
+}

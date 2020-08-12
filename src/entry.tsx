@@ -3,6 +3,8 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 ReactDOM.render(
-  <Hello name='react' onChange={name => console.log(name)}/>,
+  <Hello fruit={['apple', 'banana']} onDeleteFruit={(name) => {
+    console.log('Delete: ', name)
+  }}/>,
   document.body
 )
