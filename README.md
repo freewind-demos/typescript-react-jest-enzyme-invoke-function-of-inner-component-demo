@@ -1,7 +1,7 @@
-TypeScript React Jest Enzyme Demo
-=============================================
+TypeScript React Jest Enzyme Invoke Function of Inner Component Demo
+====================================================================
 
-如何使用jest和`enzyme`来测试react component的行为。
+如果使用enzyme调用内部组件中的某个property回调函数
 
 ```
 npm install

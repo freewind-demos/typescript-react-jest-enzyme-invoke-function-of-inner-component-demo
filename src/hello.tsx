@@ -1,18 +1,13 @@
-import React from 'react';
-import Box from './box';
+import React, {useState} from 'react';
 
-type Props = {
-  fruit: string[]
-  onDeleteFruit?: (name: string) => void
+export function Inner({onClick}: { onClick: (data: string) => void }) {
+  return <button onClick={() => onClick('click!')}>Click</button>
 }
 
-export default function Hello({fruit, onDeleteFruit}: Props) {
+export default function Hello() {
+  const [data, setData] = useState('')
   return <div>
-    <h1>Hello, I like:</h1>
-    {
-      fruit.map((name, index) =>
-        <Box name={name} onDeleteFruit={onDeleteFruit} key={index}/>
-      )
-    }
+    <div className='data'>{data}</div>
+    <Inner onClick={(str) => setData(str)}/>
   </div>
 }
