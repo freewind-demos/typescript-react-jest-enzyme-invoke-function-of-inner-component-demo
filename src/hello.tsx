@@ -1,13 +1,21 @@
 import React, {useState} from 'react';
 
-export function Inner({onClick}: { onClick: (data: string) => void }) {
+type Props = {
+  onClick: (data: string) => void
+}
+
+export function Inner({onClick}: Props) {
   return <button onClick={() => onClick('click!')}>Click</button>
+}
+
+export function Middle({onClick}: Props) {
+  return <Inner onClick={onClick}/>
 }
 
 export default function Hello() {
   const [data, setData] = useState('')
   return <div>
     <div className='data'>{data}</div>
-    <Inner onClick={(str) => setData(str)}/>
+    <Middle onClick={(str) => setData(str)}/>
   </div>
 }

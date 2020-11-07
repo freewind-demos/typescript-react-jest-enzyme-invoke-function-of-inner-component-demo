@@ -1,14 +1,29 @@
-import {shallow} from 'enzyme';
+import {mount, shallow} from 'enzyme';
 import React from 'react';
 
-import Hello, {Inner} from './hello';
+import Hello, {Inner, Middle} from './hello';
 
 describe('<Hello />', () => {
 
-  it('calls onFruitDelete if deletes a fruit', () => {
-    const wrapper = shallow(<Hello/>);
-    wrapper.find(Inner).invoke('onClick')('aaa');
-    expect(wrapper.find('.data').text()).toBe('aaa');
-  });
+  describe('mount', () => {
+    it('renders descendant elements', () => {
+      const wrapper = mount(<Hello/>);
+      wrapper.find(Inner).invoke('onClick')('aaa');
+      expect(wrapper.find('.data').text()).toBe('aaa');
+    });
+  })
+
+  describe('shallow', () => {
+    it('renders direct children elements', () => {
+      const wrapper = shallow(<Hello/>);
+      wrapper.find(Middle).invoke('onClick')('aaa');
+      expect(wrapper.find('.data').text()).toBe('aaa');
+    });
+
+    it('does not render descendant elements', () => {
+      const wrapper = shallow(<Hello/>);
+      expect(wrapper.find(Inner)).toHaveLength(0)
+    });
+  })
 
 });
